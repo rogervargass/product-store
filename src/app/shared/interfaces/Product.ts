@@ -1,5 +1,7 @@
 export interface IProduct {
-  id: number;
+  id: string;
   name: string;
   price: number;
 }
+
+export type ICreateProduct = Omit<IProduct, 'id'>;
