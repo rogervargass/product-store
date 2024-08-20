@@ -40,15 +40,11 @@ export class ListComponent {
       .afterClosed()
       .pipe(filter((isConfirmed: boolean) => isConfirmed))
       .subscribe(() => {
-        this.confirmDelete(id);
+        this.productService.delete(id).subscribe({
+          next: () => this.productDeleteSuccess(id),
+          error: this.productDeleteError
+        });
       });
-  }
-
-  private confirmDelete(id: string) {
-    this.productService.delete(id).subscribe({
-      next: () => this.productDeleteSuccess(id),
-      error: this.productDeleteError
-    });
   }
 
   private productDeleteSuccess(id: string) {
