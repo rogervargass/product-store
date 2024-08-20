@@ -1,7 +1,13 @@
 <section class="action-container">
-  <a mat-raised-button color="primary" [routerLink]="['/create-product']">Criar produto</a>  
+  <a mat-raised-button color="primary" [routerLink]="['/create-product']"
+    >Criar produto</a
+  >
 </section>
 
 @for (product of products; track product.id) {
-  <app-card [product]="product" (edit)="onEdit(product.id)"></app-card>
+<app-card
+  [product]="product"
+  (edit)="onEdit(product.id)"
+  (delete)="onDelete(product.id)"
+></app-card>
 }

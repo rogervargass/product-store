@@ -13,6 +13,7 @@ import { IProduct } from '../../../../shared/interfaces/Product';
 export class CardComponent {
   product = input.required<IProduct>();
   edit = output<void>();
+  delete = output<void>();
 
   productName = computed(() => this.product().name);
   productPrice = computed(() => this.product().price);

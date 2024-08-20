@@ -9,16 +9,6 @@
       "id": "2",
       "name": "Product 2",
       "price": "200"
-    },
-    {
-      "name": "Teste editar",
-      "price": "300",
-      "id": "2a7b"
-    },
-    {
-      "id": "186d",
-      "name": "Novo Produto",
-      "price": "500"
     }
   ]
 }
