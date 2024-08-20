@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
+import { filter } from 'rxjs';
 import { DialogComponent } from '../../shared/components/dialog/dialog.component';
 import { IProduct } from '../../shared/interfaces/Product';
 import { ProductsService } from '../../shared/services/products.service';
@@ -37,10 +38,9 @@ export class ListComponent {
     this.dialog
       .open(DialogComponent)
       .afterClosed()
-      .subscribe((isConfirmed: boolean) => {
-        if (isConfirmed) {
-          this.confirmDelete(id);
-        }
+      .pipe(filter((isConfirmed: boolean) => isConfirmed))
+      .subscribe(() => {
+        this.confirmDelete(id);
       });
   }
 
