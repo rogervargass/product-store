@@ -24,7 +24,7 @@ export class ListComponent {
     });
   }
 
-  onEdit() {
-    this.router.navigateByUrl('/edit-product');
+  onEdit(id: string) {
+    this.router.navigate(['/edit-product', id]);
   }
 }

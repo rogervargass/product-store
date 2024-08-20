@@ -13,7 +13,15 @@ export class ProductsService {
     return this.httpClient.get<IProduct[]>('api/products');
   }
 
+  getById(id: string) {
+    return this.httpClient.get<IProduct>(`api/products/${id}`);
+  }
+
   create(body: ICreateProduct) {
     return this.httpClient.post('api/products', body);
+  }
+
+  update(id: string, body: IProduct) {
+    return this.httpClient.put(`api/products/${id}`, body);
   }
 }
