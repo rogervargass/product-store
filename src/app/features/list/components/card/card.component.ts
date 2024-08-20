@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { IProduct } from '../../../../shared/interfaces/Product';
@@ -12,6 +12,7 @@ import { IProduct } from '../../../../shared/interfaces/Product';
 })
 export class CardComponent {
   product = input.required<IProduct>();
+  edit = output<void>();
 
   productName = computed(() => this.product().name);
   productPrice = computed(() => this.product().price);
