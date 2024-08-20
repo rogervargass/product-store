@@ -54,21 +54,11 @@ export class CreateComponent {
 
   private productCreateSuccess = () => {
     this.form.reset();
-
-    this.snackBarService.open('Produto criado com sucesso!', 'Fechar', {
-      duration: 3000, 
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    })
-
+    this.snackBarService.open('Produto criado com sucesso!', 'Fechar');
     this.router.navigateByUrl('/');
   };
 
   private productCreateError = () => {
-    this.snackBarService.open('Erro ao tentar criar produto!', 'Fechar', {
-      duration: 3000, 
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-    })
+    this.snackBarService.open('Erro ao tentar criar produto!', 'Fechar');
   };
 }
