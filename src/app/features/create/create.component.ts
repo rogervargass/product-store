@@ -8,6 +8,8 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ProductsService } from '../../shared/services/products.service';
 
 @Component({
@@ -24,6 +26,8 @@ import { ProductsService } from '../../shared/services/products.service';
 })
 export class CreateComponent {
   productService = inject(ProductsService);
+  snackBarService = inject(MatSnackBar);
+  router = inject(Router);
 
   form = new FormGroup({
     name: new FormControl('', {
@@ -42,9 +46,29 @@ export class CreateComponent {
       price: Number(this.form.controls.price.value),
     }
 
-    this.productService.create(payload).subscribe(() => {
-      this.form.reset();
-      console.log('Product created');
+    this.productService.create(payload).subscribe({
+      next: this.productCreateSuccess,
+      error: this.productCreateError,
     });
+  };
+
+  private productCreateSuccess = () => {
+    this.form.reset();
+
+    this.snackBarService.open('Produto criado com sucesso!', 'Fechar', {
+      duration: 3000, 
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    })
+
+    this.router.navigateByUrl('/');
+  };
+
+  private productCreateError = () => {
+    this.snackBarService.open('Erro ao tentar criar produto!', 'Fechar', {
+      duration: 3000, 
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    })
   };
 }
