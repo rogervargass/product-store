@@ -8,6 +8,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { DirectiveModule } from '../../directives/directive.module';
 import { IProduct } from '../../interfaces/Product';
 
 @Component({
@@ -18,6 +19,7 @@ import { IProduct } from '../../interfaces/Product';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    DirectiveModule
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss',
