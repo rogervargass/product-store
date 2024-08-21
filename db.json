@@ -44,6 +44,16 @@
       "id": "1b9f",
       "name": "Novo produto",
       "price": "400"
+    },
+    {
+      "id": "6bd6",
+      "name": "Teste valor",
+      "price": "350"
+    },
+    {
+      "id": "9126",
+      "name": "novo valor",
+      "price": "600,9"
     }
   ]
 }
