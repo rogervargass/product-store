@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -17,7 +17,7 @@ import { CardComponent } from './components/card/card.component';
   styleUrl: './list.component.scss',
 })
 export class ListComponent {
-  products: IProduct[] = [];
+  products = signal<IProduct[]>([]);
 
   productService = inject(ProductsService);
   router = inject(Router);
@@ -25,8 +25,13 @@ export class ListComponent {
   snackBarService = inject(MatSnackBar);
 
   ngOnInit() {
-    this.productService.getAll().subscribe((products) => {
-      this.products = products;
+    this.listAllProducts();
+  }
+
+  private listAllProducts() {
+    return this.productService.getAll().subscribe({
+      next: (products) => this.products.set(products),
+      error: () => this.snackBarService.open('Erro ao tentar buscar produtos!', 'Fechar'),
     });
   }
 
@@ -35,24 +40,27 @@ export class ListComponent {
   }
 
   onDelete(id: string) {
-    this.dialog
-      .open(DialogComponent)
+    this.openDialog()
       .afterClosed()
       .pipe(filter((isConfirmed: boolean) => isConfirmed))
       .subscribe(() => {
         this.productService.delete(id).subscribe({
           next: () => this.productDeleteSuccess(id),
-          error: this.productDeleteError
+          error: this.productDeleteError,
         });
       });
   }
 
   private productDeleteSuccess(id: string) {
-    this.products = this.products.filter((product) => product.id !== id);
+    this.products.update((products) => products.filter((product) => product.id !== id));
     this.snackBarService.open('Produto deletado com sucesso!', 'Fechar');
   }
 
   private productDeleteError() {
     this.snackBarService.open('Erro ao tentar deletar produto!', 'Fechar');
+  }
+
+  private openDialog() {
+    return this.dialog.open(DialogComponent);
   }
 }
