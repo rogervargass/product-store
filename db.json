@@ -9,6 +9,41 @@
       "id": "2",
       "name": "Product 2",
       "price": "200"
+    },
+    {
+      "id": "08da",
+      "name": "Produto 3",
+      "price": "300"
+    },
+    {
+      "id": "d7bc",
+      "name": "Produto 4",
+      "price": "500"
+    },
+    {
+      "id": "80a6",
+      "name": "Produto 5",
+      "price": "500"
+    },
+    {
+      "id": "fjs3",
+      "name": "Product 6",
+      "price": "100"
+    },
+    {
+      "id": "njf1",
+      "name": "Product 7",
+      "price": "200"
+    },
+    {
+      "id": "03da",
+      "name": "Produto 8",
+      "price": "300"
+    },
+    {
+      "id": "1b9f",
+      "name": "Novo produto",
+      "price": "400"
     }
   ]
 }

@@ -1,13 +1,48 @@
 <section class="action-container">
+  <span class="total-items">{{ totalItems }} Produtos</span>
   <a mat-raised-button color="primary" [routerLink]="['/create-product']"
     >Criar produto</a
   >
 </section>
 
-@for (product of products(); track product.id) {
-<app-card
-  [product]="product"
-  (edit)="onEdit(product.id)"
-  (delete)="onDelete(product.id)"
-></app-card>
-}
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Nome</th>
+      <th>Preço</th>
+      <th>Quantidade</th>
+      <th>Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (product of products(); track product.id) {
+      @defer (on immediate) {
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ 0 }}</td>
+          <td>
+            <button mat-icon-button (click)="onEdit(product.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onDelete(product.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+        <!-- <app-card
+          [product]="product"
+          (edit)="onEdit(product.id)"
+          (delete)="onDelete(product.id)"
+        ></app-card> -->
+      }
+    } 
+    @empty {
+      @defer (on immediate) {
+        <app-no-items></app-no-items>
+      }
+    }
+  </tbody>
+</table>
