@@ -9,14 +9,12 @@ import { filter } from 'rxjs';
 import { DialogComponent } from '../../shared/components/dialog/dialog.component';
 import { IProduct } from '../../shared/interfaces/Product';
 import { ProductsService } from '../../shared/services/products.service';
-import { CardComponent } from './components/card/card.component';
 import { NoItemsComponent } from './components/no-items/no-items.component';
 
 @Component({
   selector: 'app-list',
   standalone: true,
   imports: [
-    CardComponent,
     RouterLink,
     MatButtonModule,
     NoItemsComponent,
