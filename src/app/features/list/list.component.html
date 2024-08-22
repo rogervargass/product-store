@@ -21,8 +21,8 @@
         <tr>
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
-          <td>{{ product.price }}</td>
-          <td>{{ 0 }}</td>
+          <td>R$ {{ product.price }}</td>
+          <td>{{ product.quantity }}</td>
           <td>
             <button mat-icon-button (click)="onEdit(product.id)">
               <mat-icon>edit</mat-icon>

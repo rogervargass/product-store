@@ -43,6 +43,10 @@ export class FormComponent {
         nonNullable: true,
         validators: Validators.required,
       }),
+      quantity: new FormControl<number>(this.product()?.quantity ?? 0, {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
     });
   };
 
